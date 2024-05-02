@@ -1,0 +1,19 @@
+---
+- name: Ensure the package list is updated
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600  # Cache valid for 1 hour to avoid unnecessary updates
+
+- name: Upgrade all packages to the latest version
+  ansible.builtin.apt:
+    upgrade: dist
+    force_apt_get: yes  # Use apt-get instead of aptitude
+
+- name: Remove unnecessary packages and dependencies
+  ansible.builtin.apt:
+    autoremove: yes
+    purge: yes
+
+- name: Clean up the local repository of retrieved package files
+  ansible.builtin.apt:
+    autoclean: yes
