@@ -9,6 +9,12 @@
     upgrade: dist
     force_apt_get: yes  # Use apt-get instead of aptitude
 
+# Update the apt cache
+- name: Install common set of apts
+  import_tasks: common_pkgs.yaml
+  tags: 
+    - setup
+
 - name: Remove unnecessary packages and dependencies
   ansible.builtin.apt:
     autoremove: yes
@@ -17,3 +23,5 @@
 - name: Clean up the local repository of retrieved package files
   ansible.builtin.apt:
     autoclean: yes
+
+

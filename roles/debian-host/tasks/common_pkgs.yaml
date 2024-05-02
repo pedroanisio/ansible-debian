@@ -1,0 +1,5 @@
+---
+- name: Install base packages
+  apt:
+    name: "{{ software.base_packages }}"
+    state: present
