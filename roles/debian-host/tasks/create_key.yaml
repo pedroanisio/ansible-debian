@@ -1,0 +1,46 @@
+---
+- name: Check if SSH key exists for {{ users.standalone }}
+  stat:
+    path: "~/.ssh/id_rsa"
+  become: yes
+  become_user: "{{ users.standalone }}"
+  register: result
+  tags:
+    - ssh_setup
+    - replica_setup    
+
+- name: Ensure .ssh directory exists for {{ users.standalone }}
+  file:
+    path: "~/.ssh/"
+    state: directory
+    mode: '0700'
+  become: yes
+  become_user: "{{ users.standalone }}"
+  when: not result.stat.exists
+  tags:
+    - ssh_setup
+    - replica_setup  
+
+- name: Generate an OpenSSH keypair for {{ users.standalone }} with the default values (4096 bits, rsa)
+  community.crypto.openssh_keypair:
+    path: "~/.ssh/id_rsa"
+  become: yes
+  become_user: "{{ users.standalone }}"
+  when: not result.stat.exists
+  tags:
+    - ssh_setup
+    - replica_setup  
+
+- name: Copy public key to authorized_keys for {{ users.standalone }}
+  copy:
+    src:  "~/.ssh/id_rsa.pub" 
+    dest: "~/.ssh/authorized_keys" 
+    owner: "{{ users.standalone }}"
+    group: "{{ users.standalone }}"
+    mode: '0600'
+  become: yes
+  become_user: "{{ users.standalone }}"
+  when: not result.stat.exists
+  tags:
+    - ssh_setup
+    - replica_setup

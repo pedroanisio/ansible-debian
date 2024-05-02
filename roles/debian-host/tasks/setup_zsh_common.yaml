@@ -1,0 +1,47 @@
+---
+- name: Check for .oh-my-zsh in user directories
+  stat:
+    path: "~{{ user }}/.oh-my-zsh"
+  register: oh_my_zsh_stat
+  loop: "{{ users.list }}"
+  loop_control:
+    loop_var: user
+
+- name: Check current default shell for users
+  getent:
+    database: passwd
+    key: "{{ user }}"
+  register: user_shell_info
+  loop: "{{ users.list }}"
+  loop_control:
+    loop_var: user
+
+- name: Set ZSH as default shell for users
+  user:
+    name: "{{ user }}"
+    shell: /bin/zsh
+  when: user_shell_info['results'][users.list.index(user)]['ansible_facts']['getent_passwd'][user][-1] != "/bin/zsh"
+  loop: "{{ users.list }}"
+  loop_control:
+    loop_var: user
+
+- name: Clone oh-my-zsh for users
+  become_user: "{{ user }}"
+  git:
+    repo: "{{ software.repositories.oh_my_zsh.url }}"
+    dest: "~{{ user }}/.oh-my-zsh"
+    update: no
+  loop: "{{ users.list }}"
+  when: not oh_my_zsh_stat.results[users.list.index(user)].stat.exists
+  loop_control:
+    loop_var: user
+
+- name: Sync zshrc templates for users
+  template:
+    mode: '0644'
+    src: "oh_my_zsh/zshrc-{{ user }}.j2"
+    owner: "{{ user }}"
+    dest: "~{{ user }}/.zshrc"
+  loop: "{{ users.list }}"
+  loop_control:
+    loop_var: user

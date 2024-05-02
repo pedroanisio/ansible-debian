@@ -24,4 +24,14 @@
   ansible.builtin.apt:
     autoclean: yes
 
+# Setup zsh for users
+- name: Setup zsh common
+  import_tasks: setup_zsh_common.yaml
+  tags: 
+    - setup
 
+# Include tasks from an external file
+- name: Check if ssh key exit and create if not
+  import_tasks: create_key.yaml
+  tags: 
+    - setup

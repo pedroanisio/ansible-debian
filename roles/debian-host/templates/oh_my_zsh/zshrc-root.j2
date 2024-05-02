@@ -1,0 +1,15 @@
+## set vars
+export ZSH="$HOME/.oh-my-zsh"
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+PATH="$HOME/.local/bin:$PATH"
+ZSH_THEME="jtriley"
+
+## source
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+
+## my general alias
+alias grep="grep --color"
+alias ls="ls -lah"
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
