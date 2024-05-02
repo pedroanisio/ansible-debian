@@ -1,4 +1,10 @@
-
+## User configuration
+users:
+  list:
+    - root
+    - pals
+  standalone: pals
+  
 # Software & packages
 software:
   repositories:
