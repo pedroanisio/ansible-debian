@@ -26,19 +26,16 @@ debian_vms:
   hosts:
     srv-docker-node-0:
       ansible_host: 10.10.10.37
-  hosts:
     srv-docker-node-1:
       ansible_host: 10.10.10.185
-  hosts:
     srv-docker-node-2:
       ansible_host: 10.10.10.39
-  hosts:
     srv-docker-dmz:
       ansible_host: 10.0.80.16
 
 # Group containing all Debian hosts using children
-  debian_hosts:
-    children:
-      pve_cluster_1:
-      pve_cluster_2:
-      debian_vms:
+debian_hosts:
+  children:
+    pve_cluster_1:
+    pve_cluster_2:
+    debian_vms:

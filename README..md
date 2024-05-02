@@ -39,7 +39,7 @@ ansible-project/
 ## Commands
 
 ```shell
-ansible-playbook -i inventory/hosts.yaml playbooks/debian_tasks.yaml
+ansible-playbook -i inventories/hosts.yaml playbooks/debian_tasks.yaml
 ```
 
 ###  Fix role into playbooks
