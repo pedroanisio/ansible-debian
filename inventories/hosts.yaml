@@ -1,29 +1,28 @@
 ## Proxmox Hypervisor Clusters
----
-k8s: #coma
-  hosts:
-    k8s-node-1:
-      ansible_host: 10.0.0.192
-    #k8s-node-2:
-    #  ansible_host: 10.0.0.129
-    #k8s-node-3:
-    #  ansible_host: 10.0.0.153      
-
-pve_cluster: #universe
-  hosts:
-    alone:
-      ansible_host: 10.0.0.135
+hypervisors:
+   hosts:
     storage:
       ansible_host: 10.0.0.17
-    higgs:
-      ansible_host: 10.0.0.100
     beast:
       ansible_host: 10.0.0.44
     rog17:
-      ansible_host: 10.0.0.77  
+      ansible_host: 10.0.0.77
+    higgs:
+      ansible_host: 10.0.0.100
+    alone:
+      ansible_host: 10.0.0.135
+    pve1:
+      ansible_host: 10.0.0.192
 
-# Group containing all Debian hosts using children
-debian_hosts:
-  children:
-    #pve_cluster:
-    k8s:    
+probe:
+  hosts:
+    probe_ants:
+      ansible_host: 10.0.33.199
+    probe_cam:
+      ansible_host: 192.168.5.199
+    probe_dmz:
+      ansible_host: 10.0.80.199
+    probe_internet:
+      ansible_host: 10.0.99.199
+    probe_vm:
+      ansible_host: 10.10.10.199      

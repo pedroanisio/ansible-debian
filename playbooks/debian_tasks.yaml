@@ -1,6 +1,6 @@
 ---
 - name: Run Debian recommended maintenance tasks
-  hosts: debian_hosts
+  hosts: all
   become: yes
   roles:
     - debian-host
