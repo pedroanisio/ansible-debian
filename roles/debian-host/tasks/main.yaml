@@ -35,3 +35,9 @@
   import_tasks: create_key.yaml
   tags: 
     - setup
+
+# Include tasks from an external file
+- name: Disable IPv6
+  import_tasks: disable_ipv6.yaml
+  tags: 
+    - setup    
