@@ -36,6 +36,13 @@ ansible-project/
     └── host2.yml            # Variables specific to 'host2'
 ```
 
+## Tasks
+
+- update packages
+- install common set of packages;
+- setup zsh shell as common
+- create ssh key
+
 ## Commands
 
 ```shell

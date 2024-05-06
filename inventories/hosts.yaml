@@ -18,11 +18,16 @@ probe:
   hosts:
     probe_ants:
       ansible_host: 10.0.33.199
-    probe_cam:
-      ansible_host: 192.168.5.199
     probe_dmz:
       ansible_host: 10.0.80.199
     probe_internet:
       ansible_host: 10.0.99.199
     probe_vm:
-      ansible_host: 10.10.10.199      
+      ansible_host: 10.10.10.199
+    probe_cam:
+      ansible_host: 192.168.5.199
+
+portainer:
+  hosts:
+    portainer:
+      ansible_host: 10.10.10.9
