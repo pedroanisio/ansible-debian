@@ -27,13 +27,15 @@ probe:
     probe_cam:
       ansible_host: 192.168.5.199
 
+# Docker Installs
+dockers:
+  hosts:
+    srv-dkr-graylog:
+      ansible_host: 10.10.10.8
+
 vms:
   hosts:
     srv-docker-main-2:
       ansible_host: 10.10.10.9
-    srv-mongodb7:
-      ansible_host: 10.10.10.46
     srv-docker-dmz:
       ansible_host: 10.10.10.16
-    srv-opensearch:
-      ansible_host: 10.10.10.49        
