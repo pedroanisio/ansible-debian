@@ -4,6 +4,8 @@ users:
     - root
     - pals
   standalone: pals
+
+graylog_hostname: srv-dkr-graylog.vm.lab.internal
   
 # Software & packages
 software:

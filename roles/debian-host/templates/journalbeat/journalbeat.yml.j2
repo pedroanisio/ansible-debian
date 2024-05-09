@@ -1,0 +1,27 @@
+fields_under_root: true
+
+journalbeat.inputs:
+- paths: []
+  seek: cursor
+
+seccomp:
+  default_action: allow 
+  syscalls:
+  - action: allow
+    names:
+    - rseq
+
+#logging.level: info  
+#logging.to_files: true  
+#logging.files:  
+#  path: /var/log/journalbeat
+#  name: journalbeat
+#  keepfiles: 7
+#  permissions: 0644
+
+output.logstash:
+  enabled: true
+  hosts: ["{{ graylog_hostname }}:5044"]
+  slow_start: true
+  bulk_max_size: 2048
+  index: 'journalctl' 

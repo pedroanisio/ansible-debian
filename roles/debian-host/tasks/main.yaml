@@ -40,4 +40,10 @@
 - name: Disable IPv6
   import_tasks: disable_ipv6.yaml
   tags: 
-    - setup    
+    - setup
+
+# Include tasks from an external file
+- name: Setup Journalbeat
+  import_tasks: journalbeat.yaml
+  tags: 
+    - journalbeat

@@ -1,0 +1,37 @@
+---
+- name: Add Elasticsearch GPG key
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Add Elasticsearch repository
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/7.x/apt stable main
+    state: present
+    filename: elastic-7.x
+
+- name: Install Journalbeat
+  apt:
+    name: journalbeat
+    state: present
+    update_cache: yes
+
+- name: Ensure /etc/journalbeat directory exists
+  ansible.builtin.file:
+    path: /etc/journalbeat
+    state: directory
+    mode: '0755'
+
+- name: Copy journalbeat.yml template to /etc/journalbeat/
+  ansible.builtin.template:
+    src: journalbeat/journalbeat.yml.j2
+    dest: /etc/journalbeat/journalbeat.yml
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Enable and start journalbeat
+  ansible.builtin.systemd:
+    name: journalbeat
+    enabled: true
+    state: started
