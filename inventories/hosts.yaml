@@ -47,3 +47,10 @@ vms:
       ansible_host: 10.10.10.16
     srv-code:
       ansible_host: 10.10.10.30
+
+# router:
+#   hosts:
+#     srv-router:
+#       ansible_host: 10.10.10.1
+# Uncoment only to updae journalbeat on the router
+# risks of disable ipv6 on uDM Pro
