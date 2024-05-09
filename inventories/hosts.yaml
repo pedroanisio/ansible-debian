@@ -32,13 +32,10 @@ dockers:
   hosts:
     srv-dkr-graylog:
       ansible_host: 10.10.10.8
-  hosts:
     srv-docker-node-0:
       ansible_host: 10.10.10.37      
-  hosts:
     srv-docker-node-2:
       ansible_host: 10.10.10.39
-  hosts:
     srv-docker-node-1:
       ansible_host: 10.10.10.185      
 
