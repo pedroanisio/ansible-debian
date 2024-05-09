@@ -29,6 +29,7 @@
     owner: root
     group: root
     mode: '0644'
+    force: true
 
 - name: Enable and start journalbeat
   ansible.builtin.systemd:
